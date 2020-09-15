@@ -10,7 +10,6 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         Aplicacion aplicacion = new Aplicacion();
-        Usuario usuario = new Usuario("garcia", "pepe", "CONFIDENCIAL", "madrid", 01);
         aplicacion.ejecutar();
 
 

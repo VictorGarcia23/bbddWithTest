@@ -47,8 +47,13 @@ public class DAO {
     public String meterUsuario(Usuario usuario) throws SQLException {
         String m = usuario.getApellidos() +
                 usuario.getNombre() + usuario.getDepartamento() + usuario.getSede();
-        String selectTableSQL = "INSERT INTO usuarios(apellidos, nombre, departamento, sede) VALUES ('" + m + "' )";
-        Statement statement = this.conexion.createStatement();
+        String selectTableSQL = "INSERT INTO usuarios(apellidos, nombre, departamento, sede) " +
+                "VALUES (  ?,?,?,? )";
+        PreparedStatement statement = this.conexion.prepareStatement(selectTableSQL);
+        statement.setString(1,aplicacion.getApellidos());
+        statement.setString(2,aplicacion.getNombre());
+        statement.setString(3,aplicacion.getDepartamento());
+        statement.setString(4,aplicacion.getSede());
         ResultSet rs = statement.executeQuery(selectTableSQL);
         String aviso = "el usuario ha sido registrado correctamente";
         statement.close();

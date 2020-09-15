@@ -21,6 +21,7 @@ public class Aplicacion {
                 menuHelper.listasDeUsuarios();
                 break;
             case 2:
+                meterUsuarioMenu();
                 menuHelper.meterUsuario();
                 break;
             case 3:
@@ -53,6 +54,56 @@ public class Aplicacion {
 
 
 
+    }
+    private String nombre;
+    private String apellidos;
+    private String departamento;
+    private String sede;
+    public void meterUsuarioMenu(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("dame el nombre");
+        String nombre = input.nextLine();
+        System.out.println("dame los apellidos");
+        String apellidos = input.nextLine();
+        System.out.println("dame el departamento");
+        String departamento = input.nextLine();
+        System.out.println("dame la sede");
+        String sede = input.nextLine();
+        nombre = this.nombre;
+        apellidos = this.apellidos;
+        departamento = this.departamento;
+        sede = this.sede;
+    }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public String getSede() {
+        return sede;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public void setSede(String sede) {
+        this.sede = sede;
     }
 }
