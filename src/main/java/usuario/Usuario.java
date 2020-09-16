@@ -56,4 +56,15 @@ public class Usuario {
     public void setSede(String sede) {
         this.sede = sede;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", apellidos='" + apellidos + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", departamento='" + departamento + '\'' +
+                ", sede='" + sede + '\'' +
+                '}';
+    }
 }

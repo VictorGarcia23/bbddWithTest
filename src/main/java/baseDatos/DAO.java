@@ -9,10 +9,8 @@ import java.util.List;
 
 public class DAO {
     public static Connection conexion;
-    int id;
-    Usuario usuario;
-    Aplicacion aplicacion;
-    public DAO()throws SQLException {
+
+    public DAO() {
         try {
 
             String url = "jdbc:postgresql://192.168.56.2/Empresa";
@@ -29,10 +27,10 @@ public class DAO {
         String selectTableSQL = "SELECT * FROM usuarios";
         Statement statement = this.conexion.createStatement();
         ResultSet rs = statement.executeQuery(selectTableSQL);
-        System.out.println(rs);
+
 
         while(rs.next()){
-            Usuario u = new Usuario(rs.getString("apellidos"),
+            Usuario u = new Usuario(rs.getString("apellido"),
                     rs.getString("nombre"),
                     rs.getString("departamento"),
                     rs.getString("sede"),
@@ -44,28 +42,34 @@ public class DAO {
         return usuarios;
 
     }
+
     public String meterUsuario(Usuario usuario) throws SQLException {
-        String m = usuario.getApellidos() +
-                usuario.getNombre() + usuario.getDepartamento() + usuario.getSede();
-        String selectTableSQL = "INSERT INTO usuarios(apellidos, nombre, departamento, sede) " +
+        String selectTableSQL = "INSERT INTO usuarios(apellido, nombre, departamento, sede) " +
                 "VALUES (  ?,?,?,? )";
         PreparedStatement statement = this.conexion.prepareStatement(selectTableSQL);
-        statement.setString(1,aplicacion.getApellidos());
-        statement.setString(2,aplicacion.getNombre());
-        statement.setString(3,aplicacion.getDepartamento());
-        statement.setString(4,aplicacion.getSede());
-        ResultSet rs = statement.executeQuery(selectTableSQL);
-        String aviso = "el usuario ha sido registrado correctamente";
+        statement.setString(1,usuario.getApellidos());
+        statement.setString(2,usuario.getNombre());
+        statement.setString(3,usuario.getDepartamento());
+        statement.setString(4,usuario.getSede());
+        int result = statement.executeUpdate();
         statement.close();
-        return aviso;
+        if(result == 1){
+            return "El usuario ha sido registrado correctamente";
+        }   else{
+                return "No se ha podido inserta usuario.";
+        }
+
 
     }
     public String eliminarUsuario(int id) throws SQLException {
-        Statement statement = this.conexion.prepareStatement("DELETE FROM usuarios(id) VALUES ('" + usuario.getId() + "')");
-        int x = statement.executeUpdate("");
-        statement.close();
-        this.id = id;
-        return " Usuario eliminado ";
+
+        int resultado = this.conexion.createStatement().executeUpdate("DELETE FROM usuarios WHERE id = " + id + ";");
+        if(resultado == 1){
+            return "El usuario ha sido eliminado correctamente";
+        }   else{
+                return "No se ha podido eliminar usuario.";
+        }
+
     }
 
 }
