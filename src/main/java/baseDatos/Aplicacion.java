@@ -43,9 +43,9 @@ public class Aplicacion {
         StringBuilder sb = new StringBuilder();
         System.out.println("Bienvenido a su base de datos");
         System.out.println();
-        sb.append("Pulse 1 si desea listar los usuarios " +
-                "Pulse 2 si desea añadir usuarios " +
-                "Pulse 3 si desea eliminar usuarios " +
+        sb.append("Pulse 1 si desea listar los usuarios \n" +
+                "Pulse 2 si desea añadir usuarios \n" +
+                "Pulse 3 si desea eliminar usuarios \n" +
                 "Pulse 4 si desea salir de la aplicacion");
         System.out.println(sb);
 
