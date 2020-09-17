@@ -1,7 +1,7 @@
-package baseDatos;
+package com.tecnara.rrhh.app;
 
 
-import usuario.Usuario;
+import com.tecnara.rrhh.menu.MenuHelper;
 
 import java.sql.SQLException;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package usuario;
+package com.tecnara.rrhh.dominio;
 
 public class Usuario {
 

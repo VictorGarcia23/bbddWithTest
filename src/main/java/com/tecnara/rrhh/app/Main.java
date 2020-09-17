@@ -1,9 +1,6 @@
-package baseDatos;
-
-import usuario.Usuario;
+package com.tecnara.rrhh.app;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class Main {
 

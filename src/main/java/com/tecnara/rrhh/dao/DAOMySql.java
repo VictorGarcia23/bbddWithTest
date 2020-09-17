@@ -1,31 +1,32 @@
-package baseDatos;
+package com.tecnara.rrhh.dao;
 
-import sun.swing.MenuItemLayoutHelper;
-import usuario.Usuario;
+import com.tecnara.rrhh.dominio.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
-public class DAOPostgres implements DAO {
+public class DAOMySql implements DAO{
     public static Connection conexion;
-
-    public DAOPostgres() {
+    public DAOMySql(){
         try {
 
-            String url = "jdbc:postgresql://192.168.56.2/Empresa";
-            String usuario = "Gerente";
-            String clave = "abc";
+            String url = "jdbc:mysql://localhost:3306/mysql?serverTimezone=" + TimeZone.getDefault().getID();
+            String usuario = "root";
+            String clave = "admin";
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.conexion = DriverManager.getConnection(url, usuario, clave);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error SQL: " + e.toString());
         }
     }
+
     @Override
     public List<Usuario> cargarUsuarios() throws SQLException {
         List<Usuario> usuarios = new ArrayList<>();
-        String selectTableSQL = "SELECT * FROM usuarios";
+        String selectTableSQL = "SELECT * FROM usuario";
         Statement statement = this.conexion.createStatement();
         ResultSet rs = statement.executeQuery(selectTableSQL);
 
@@ -47,7 +48,7 @@ public class DAOPostgres implements DAO {
 
     @Override
     public String meterUsuario(Usuario usuario) throws SQLException {
-        String selectTableSQL = "INSERT INTO usuarios(apellido, nombre, departamento, sede) " +
+        String selectTableSQL = "INSERT INTO usuario(apellido, nombre, departamento, sede) " +
                 "VALUES (  ?,?,?,? )";
         PreparedStatement statement = this.conexion.prepareStatement(selectTableSQL);
         statement.setString(1,usuario.getApellidos());
@@ -59,7 +60,7 @@ public class DAOPostgres implements DAO {
         if(result == 1){
             return "El usuario ha sido registrado correctamente";
         }   else{
-                return "No se ha podido inserta usuario.";
+            return "No se ha podido inserta usuario.";
         }
 
 
@@ -67,13 +68,12 @@ public class DAOPostgres implements DAO {
     @Override
     public String eliminarUsuario(int id) throws SQLException {
 
-        int resultado = this.conexion.createStatement().executeUpdate("DELETE FROM usuarios WHERE id = " + id + ";");
+        int resultado = this.conexion.createStatement().executeUpdate("DELETE FROM usuario WHERE id = " + id + ";");
         if(resultado == 1){
             return "El usuario ha sido eliminado correctamente";
         }   else{
-                return "No se ha podido eliminar usuario.";
+            return "No se ha podido eliminar usuario.";
         }
 
     }
-
 }

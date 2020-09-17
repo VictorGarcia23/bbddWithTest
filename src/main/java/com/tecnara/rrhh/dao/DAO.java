@@ -1,6 +1,6 @@
-package baseDatos;
+package com.tecnara.rrhh.dao;
 
-import usuario.Usuario;
+import com.tecnara.rrhh.dominio.Usuario;
 
 import java.sql.SQLException;
 import java.util.List;

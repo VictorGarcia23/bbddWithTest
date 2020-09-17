@@ -1,4 +1,6 @@
-package baseDatos;
+package com.tecnara.rrhh.dao;
+
+import com.tecnara.rrhh.constantes.Constantes;
 
 public class FactoriaDAO {
     public static DAO crearDB(Constantes.DAOS baseDeDatosActual){
